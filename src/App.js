@@ -75,6 +75,7 @@ function App() {
                         type="text"
                         name="firstname"
                         id="firstname"
+                        data-testid="firstname"
                         value={firstName}
                         onChange={(e) =>
                             setFirstName(e.target.value)
@@ -87,6 +88,7 @@ function App() {
                         type="text"
                         name="lastname"
                         id="lastname"
+                        data-testid="lastname"
                         value={lastName}
                         onChange={(e) =>
                             setLastName(e.target.value)
@@ -99,6 +101,7 @@ function App() {
                         type="email"
                         name="email"
                         id="email"
+                        data-testid="email"
                         value={email}
                         onChange={(e) =>
                             setEmail(e.target.value)
@@ -111,6 +114,7 @@ function App() {
                         type="tel"
                         name="contact"
                         id="contact"
+                        data-testid="contact"
                         value={contact}
                         onChange={(e) =>
                             setContact(e.target.value)
@@ -124,6 +128,7 @@ function App() {
                         name="gender"
                         value="male"
                         id="male"
+                        data-testid="male"
                         checked={gender === "male"}
                         onChange={(e) =>
                             setGender(e.target.value)
@@ -135,6 +140,7 @@ function App() {
                         name="gender"
                         value="female"
                         id="female"
+                        data-testid="female"
                         checked={gender === "female"}
                         onChange={(e) =>
                             setGender(e.target.value)
@@ -146,6 +152,7 @@ function App() {
                         name="gender"
                         value="other"
                         id="other"
+                        data-testid="other"
                         checked={gender === "other"}
                         onChange={(e) =>
                             setGender(e.target.value)
@@ -159,6 +166,7 @@ function App() {
                         type="checkbox"
                         name="lang"
                         id="english"
+                        data-testid="english"
                         checked={subjects.english === true}
                         onChange={(e) =>
                             handleSubjectChange("english")
@@ -169,6 +177,7 @@ function App() {
                         type="checkbox"
                         name="lang"
                         id="maths"
+                        data-testid="maths"
                         checked={subjects.maths === true}
                         onChange={(e) =>
                             handleSubjectChange("maths")
@@ -179,6 +188,7 @@ function App() {
                         type="checkbox"
                         name="lang"
                         id="physics"
+                        data-testid="physics"
                         checked={subjects.physics === true}
                         onChange={(e) =>
                             handleSubjectChange("physics")
@@ -211,6 +221,7 @@ function App() {
                     <select
                         name="select"
                         id="select"
+                        data-testid="userCourse"
                         value={selectedOption}
                         onChange={(e) =>
                             setSelectedOption(
@@ -249,6 +260,7 @@ function App() {
                         id="about"
                         cols="30"
                         rows="10"
+                        data-testid="userDescription"
                         onChange={(e) =>
                             setAbout(e.target.value)
                         }
@@ -263,6 +275,7 @@ function App() {
                         Reset
                     </button>
                     <button
+                        className="btn"
                         type="submit"
                         value="Submit"
                         onClick={(e) => handleSubmit(e)}
