@@ -278,6 +278,7 @@ function App() {
                         className="btn"
                         type="submit"
                         value="Submit"
+                        data-testid="form-submit"
                         onClick={(e) => handleSubmit(e)}
                     >
                         Submit
