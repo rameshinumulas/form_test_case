@@ -21,13 +21,13 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-      - run: npm install
+        run: npm install
 
       - name: run tests
-      - run: npm test
+        run: npm test
       
       - name: Build Project
-      - run: npm run build
+        run: npm run build
 
       - name: Deploy to GitHub Pages
         if: success()
