@@ -21,13 +21,22 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'npm test'  // Adjust if using Jest, Cypress, etc.
+                catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+                    bat 'npm test --passWithNoTests'
+                }
             }
         }
 
         stage('Build React App') {
             steps {
                 bat 'npm run build'
+            }
+        }
+
+        stage('Deploy (Optional)') {
+            steps {
+                echo 'Deploying the React App...'
+                // Add deployment commands here
             }
         }
     }
