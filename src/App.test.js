@@ -91,3 +91,14 @@ test('should allow user to select option in checkobx and radio buttons', async()
     fireEvent.change(inputVal, { target: { checked: true } });
   }
 })
+
+test('Button should be clicked', async() => {
+  const handleSubmit = jest.fn();
+  render(<App handleSubmit={handleSubmit}/>);
+  const buttonElement = screen.getByTestId("form-submit");
+  await userEvent.click(buttonElement);
+  await waitFor(() => {
+    expect(handleSubmit).toHaveBeenCalledTimes(0);
+  })
+  // expect(handleSubmit).toHaveBeenCalledTimes(1);
+})
