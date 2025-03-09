@@ -30,12 +30,5 @@ pipeline {
                 bat 'npm run build'
             }
         }
-
-        stage('Deploy (Optional)') {
-            steps {
-                echo 'Deploying the React App...'
-                // Add deployment commands here
-            }
-        }
     }
 }
