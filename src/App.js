@@ -5,11 +5,14 @@
 import "./App.css";
 import { React, useState } from "react";
 
+
 function App() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [contact, setContact] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [gender, setGender] = useState("male");
     const [subjects, setSubjects] = useState({
         english: true,
@@ -21,6 +24,20 @@ function App() {
     const [selectedOption, setSelectedOption] =
         useState("");
     const [about, setAbout] = useState("");
+    const [errors, setErrors] = useState({});
+    const validate = () => {
+        let newErrors = {};
+        if (!firstName) newErrors.name = "Name is required";
+        if (!email.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/))
+          newErrors.email = "Invalid email";
+        if (password.length < 8) newErrors.password = "Password must be at least 8 characters";
+        if (password !== confirmPassword)
+          newErrors.confirmPassword = "Passwords do not match";
+        
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+      };
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,6 +53,8 @@ function App() {
             url,
             about
         );
+
+        if (validate()) console.log(e);
         // Add your form submission logic here
     };
 
@@ -83,6 +102,7 @@ function App() {
                         placeholder="Enter First Name"
                         required
                     />
+                    {errors.name && <p>{errors.name}</p>}
                     <label htmlFor="lastname">Last Name*</label>
                     <input
                         type="text"
@@ -109,6 +129,7 @@ function App() {
                         placeholder="Enter email"
                         required
                     />
+                    {errors.email && <p>{errors.email}</p>}
                     <label htmlFor="tel">Contact*</label>
                     <input
                         type="tel"
@@ -122,6 +143,34 @@ function App() {
                         placeholder="Enter Mobile number"
                         required
                     />
+                    <label htmlFor="tel">Password*</label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        data-testid="password"
+                        value={password}
+                        onChange={(e) =>
+                            setPassword(e.target.value)
+                        }
+                        placeholder="Enter Password"
+                        required
+                    />
+                    {errors.password && <p>{errors.password}</p>}
+                     <label htmlFor="tel">Confirm Password*</label>
+                    <input
+                        type="confirmPassword"
+                        name="confirmPassword"
+                        id="confirmPassword"
+                        data-testid="confirmPassword"
+                        value={confirmPassword}
+                        onChange={(e) =>
+                            setConfirmPassword(e.target.value)
+                        }
+                        placeholder="Confirm Password"
+                        required
+                    />
+                    {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
                     <label htmlFor="gender">Gender*</label>
                     <input
                         type="radio"
