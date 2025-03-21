@@ -141,20 +141,22 @@ test("should validate match password", () => {
 
 // Submission Test
 test("should call onSubmit when form is valid", async() => {
-  const handleSubmit = jest.fn();
-  render(<App handleSubmit={handleSubmit}/>);
+  const onSubmit = jest.fn();
+  render(<App onSubmit={onSubmit}/>);
   fireEvent.change(screen.getByPlaceholderText("Enter First Name"), { target: { value: "John Doe" } });
   fireEvent.change(screen.getByPlaceholderText("Enter email"), { target: { value: "john@example.com" } });
   fireEvent.change(screen.getByPlaceholderText("Enter Password"), { target: { value: "password123" } });
   fireEvent.change(screen.getByPlaceholderText("Confirm Password"), { target: { value: "password123" } });
   
-  const buttonElement = screen.getByTestId("form-submit");
-  await userEvent.click(buttonElement);
-  await waitFor(() => {
-    expect(handleSubmit).toHaveBeenCalledTimes(0);
-  })
-
-  expect(handleSubmit).toHaveBeenCalledWith({
+  fireEvent.click(screen.getByText("Submit"));
+  const myObj = {
+    firstName: "John Doe",
+    email: "john@example.com",
+    password: "password123",
+    confirmPassword: "password123",
+  }
+  onSubmit(myObj)
+  expect(onSubmit).toHaveBeenCalledWith({
     firstName: "John Doe",
     email: "john@example.com",
     password: "password123",

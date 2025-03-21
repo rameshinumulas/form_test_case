@@ -6,7 +6,7 @@ import "./App.css";
 import { React, useState } from "react";
 
 
-function App() {
+function App({ onSubmit }) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
@@ -54,7 +54,7 @@ function App() {
             about
         );
 
-        if (validate()) console.log(e);
+        if (validate()) onSubmit(e);
         // Add your form submission logic here
     };
 
